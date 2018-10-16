@@ -17,6 +17,16 @@ export EORG_PASSWORD=${EORG_PASSWORD}
 
 ## Make the script interactive to set the variables
 if [ "$INTERACTIVE" = "true" ]; then
+		read -rp "Is your system registered and attached to the correct pool?: (Y/N) " choice;
+	if [ "$choice" == "N" ] || [ "$choice" == "n"; ] then
+		echo "Users to need run the following command before this script:"
+		echo "> subscription-manager register"
+		echo ">subscription-manager attach --pool=POOLID"
+		echo ">subscription-manager repos --disable=\"*\"'"
+		exit(1);
+	fi
+
+
 	read -rp "Domain to use: ($DOMAIN): " choice;
 	if [ "$choice" != "" ] ; then
 		export DOMAIN="$choice";
@@ -68,6 +78,18 @@ echo "* OpenShift version: $VERSION "
 echo "* Red Hat account: $EORG_USER "
 echo "******"
 
+# Users to need run the following command before this script
+# subscription-manager register
+# subscription-manager attach --pool=POOLID 
+# subscription-manager repos --disable="*"'
+
+#install epel
+yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+subscription-manager repos --enable "rhel-7-server-rpms" --enable "rhel-7-server-extras-rpms" --enable "rhel-7-fast-datapath-rpms" --enable "rhel-7-server-ose-3.11-rpms"
+subscription-manager repos --enable "rhel-*-optional-rpms" --enable "rhel-*-extras-rpms"
+subscription-manager repos --enable rhel-7-server-ansible-2.6-rpms
+
+
 # install updates
 yum update -y
 
@@ -80,10 +102,7 @@ yum install -y  wget git zile nano net-tools docker-1.13.1\
 				python-cryptography python2-pip python-devel  python-passlib \
 				java-1.8.0-openjdk-headless "@Development Tools"
 
-#install epel
-yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-subscription-manager repos --enable "rhel-*-optional-rpms" --enable "rhel-*-extras-rpms"
-subscription-manager repos --enable rhel-7-server-ansible-2.6-rpms
+
 
 # Disable the EPEL repository globally so that is not accidentally used during later steps of the installation
 sed -i -e "s/^enabled=1/enabled=0/" /etc/yum.repos.d/epel.repo
