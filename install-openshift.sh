@@ -71,6 +71,7 @@ yum install -y  wget git zile nano net-tools docker-1.13.1\
 #install epel
 yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 subscription-manager repos --enable "rhel-*-optional-rpms" --enable "rhel-*-extras-rpms"
+subscription-manager repos --enable rhel-7-server-ansible-2.6-rpms
 
 # Disable the EPEL repository globally so that is not accidentally used during later steps of the installation
 sed -i -e "s/^enabled=1/enabled=0/" /etc/yum.repos.d/epel.repo
