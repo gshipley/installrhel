@@ -17,14 +17,15 @@ export EORG_PASSWORD=${EORG_PASSWORD}
 
 ## Make the script interactive to set the variables
 if [ "$INTERACTIVE" = "true" ]; then
-		read -rp "Is your system registered and attached to the correct pool?: (Y/N) " choice;
-	if [ "$choice" == "N" ] || [ "$choice" == "n"; ] then
-		echo "Users to need run the following command before this script:"
-		echo "> subscription-manager register"
-		echo ">subscription-manager attach --pool=POOLID"
-		echo ">subscription-manager repos --disable=\"*\"'"
-		exit 1
-	fi
+	read -rp "Is your system registered and attached to the correct pool?: (Y/N) " choice;
+        if [ "$choice" == "N" ] || [ "$choice" == "n" ] ; then
+                echo "Users to need run the following command before this script:"
+                echo "$> subscription-manager register"
+                echo "$> subscription-manager attach --pool=POOLID"
+                echo "$> subscription-manager repos --disable=\"*\""
+                exit 1;
+        fi
+
 
 
 	read -rp "Domain to use: ($DOMAIN): " choice;
