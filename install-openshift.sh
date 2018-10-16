@@ -69,7 +69,8 @@ yum install -y  wget git zile nano net-tools docker-1.13.1\
 				java-1.8.0-openjdk-headless "@Development Tools"
 
 #install epel
-yum -y install epel-release
+yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+subscription-manager repos --enable "rhel-*-optional-rpms" --enable "rhel-*-extras-rpms"
 
 # Disable the EPEL repository globally so that is not accidentally used during later steps of the installation
 sed -i -e "s/^enabled=1/enabled=0/" /etc/yum.repos.d/epel.repo
