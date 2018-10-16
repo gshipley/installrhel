@@ -12,6 +12,8 @@ export VERSION=${VERSION:="3.11"}
 export SCRIPT_REPO=${SCRIPT_REPO:="https://raw.githubusercontent.com/gshipley/installrhel/master"}
 export IP=${IP:="$(ip route get 8.8.8.8 | awk '{print $NF; exit}')"}
 export API_PORT=${API_PORT:="8443"}
+export EORG_USER=${EORG_USER}
+export EORG_PASSWORD=${EORG_PASSWORD}
 
 ## Make the script interactive to set the variables
 if [ "$INTERACTIVE" = "true" ]; then
@@ -44,6 +46,15 @@ if [ "$INTERACTIVE" = "true" ]; then
 		export API_PORT="$choice";
 	fi 
 
+	read -rp "Red Hat Username: ($EORG_USER): " choice;
+	if [ "$choice" != "" ] ; then
+		export EORG_USER="$choice";
+	fi 
+
+	read -rp "Red Hat Password: ($EORG_PASSWORD): " choice;
+	if [ "$choice" != "" ] ; then
+		export EORG_PASSWORD="$choice";
+	fi 
 	echo
 
 fi
@@ -54,6 +65,7 @@ echo "* Your IP is $IP "
 echo "* Your username is $USERNAME "
 echo "* Your password is $PASSWORD "
 echo "* OpenShift version: $VERSION "
+echo "* Red Hat account: $EORG_USER "
 echo "******"
 
 # install updates
