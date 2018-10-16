@@ -23,7 +23,7 @@ if [ "$INTERACTIVE" = "true" ]; then
 		echo "> subscription-manager register"
 		echo ">subscription-manager attach --pool=POOLID"
 		echo ">subscription-manager repos --disable=\"*\"'"
-		exit(1);
+		exit 1;
 	fi
 
 
