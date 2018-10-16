@@ -81,7 +81,7 @@ if [ $? -eq 1 ]; then
 fi
 
 # install the packages for Ansible
-yum -y --enablerepo=epel install ansible pyOpenSSL
+yum -y install ansible pyOpenSSL
 
 [ ! -d openshift-ansible ] && git clone https://github.com/openshift/openshift-ansible.git
 
