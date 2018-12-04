@@ -15,6 +15,6 @@ git clone https://github.com/gshipley/installrhel.git
 3. Execute the installation script
 
 ```
-cd installcentos
+cd installrhel
 ./install-openshift.sh
 ```
