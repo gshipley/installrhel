@@ -4,15 +4,17 @@ This repository is a set of scripts that will allow you easily install the lates
 
 ## Installation
 
-1. Install RHEL and subscribe it to RHSM for the correct products 
+1. Create a machine with two block devices, the second one unused - this will be used for Docker storage
 
-2. Clone this repo
+2. Install RHEL and subscribe it to RHSM for the correct products 
+
+3. Clone this repo
 
 ```
 git clone https://github.com/kenmoini/installrhel.git
 ```
 
-3. Execute the installation script
+4. Execute the installation script
 
 ```
 cd installrhel
