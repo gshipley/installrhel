@@ -103,7 +103,8 @@ yum install -y  wget git zile nano net-tools docker-1.13.1\
 				python-cryptography python2-pip python-devel  python-passlib \
 				java-1.8.0-openjdk-headless "@Development Tools"
 
-
+# install oc cli tool
+yum install -y atomic-openshift-clients
 
 # Disable the EPEL repository globally so that is not accidentally used during later steps of the installation
 sed -i -e "s/^enabled=1/enabled=0/" /etc/yum.repos.d/epel.repo
