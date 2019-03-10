@@ -5,20 +5,22 @@
 ## Default variables to use
 export INTERACTIVE=${INTERACTIVE:="true"}
 export PVS=${INTERACTIVE:="true"}
-export DOMAIN=${DOMAIN:="$(curl -s ipinfo.io/ip).nip.io"}
+export DOMAIN=${DOMAIN:="$(curl -s ipinfo.io/ip).xip.io"}
 export USERNAME=${USERNAME:="$(whoami)"}
 export PASSWORD=${PASSWORD:=password}
 export VERSION=${VERSION:="3.11"}
-export SCRIPT_REPO=${SCRIPT_REPO:="https://raw.githubusercontent.com/gshipley/installrhel/master"}
+export SCRIPT_REPO=${SCRIPT_REPO:="https://raw.githubusercontent.com/kenmoini/installrhel/master"}
 export IP=${IP:="$(ip route get 8.8.8.8 | awk '{print $NF; exit}')"}
 export API_PORT=${API_PORT:="8443"}
 export EORG_USER=${EORG_USER}
 export EORG_PASSWORD=${EORG_PASSWORD}
+export DISK=${DISK:="/dev/sdb"}
 
 ## Make the script interactive to set the variables
 if [ "$INTERACTIVE" = "true" ]; then
-	read -rp "Is your system registered and attached to the correct pool?: (Y/N) " choice;
+	read -rp "Is your system registered and attached to the correct pool, with an available secondary block device?: (Y/N) " choice;
         if [ "$choice" == "N" ] || [ "$choice" == "n" ] ; then
+		echo "Users need to attach a second block device to the machine in order to use for Docker storage"
                 echo "Users to need run the following command before this script:"
                 echo "$> subscription-manager register"
                 echo "$> subscription-manager attach --pool=POOLID"
@@ -65,6 +67,12 @@ if [ "$INTERACTIVE" = "true" ]; then
 	read -rp "Red Hat Password: ($EORG_PASSWORD): " choice;
 	if [ "$choice" != "" ] ; then
 		export EORG_PASSWORD="$choice";
+	fi 
+	echo 
+
+	read -rp "Second Block Device: ($DISK): " choice;
+	if [ "$choice" != "" ] ; then
+		export DISK="$choice";
 	fi 
 	echo
 
