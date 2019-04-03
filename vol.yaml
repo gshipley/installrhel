@@ -4,10 +4,10 @@ metadata:
   name: vol
 spec:
   capacity:
-    storage: 500Gi 
+    storage: 1Gi 
   accessModes:
     - ReadWriteOnce     
     - ReadWriteMany
-  persistentVolumeReclaimPolicy: Retain
+  persistentVolumeReclaimPolicy: Recycle
   hostPath:
     path: /mnt/data/vol
