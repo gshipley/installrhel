@@ -44,7 +44,7 @@ ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no root@$address 'y
 ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no root@$address 'tmux new-session -d -s installcentos'
 
 cat <<EOF > run.sh
-    curl https://raw.githubusercontent.com/gshipley/installcentos/master/install-openshift.sh | INTERACTIVE=false /bin/bash
+    curl https://raw.githubusercontent.com/okd-community-install/installcentos/master/install-openshift.sh | INTERACTIVE=false /bin/bash
 EOF
 
 chmod +x run.sh

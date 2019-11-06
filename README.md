@@ -9,7 +9,7 @@ This repository is a set of scripts that will allow you easily install the lates
 2. Clone this repo
 
 ```
-git clone https://github.com/gshipley/installrhel.git
+git clone https://github.com/okd-community-install/installrhel.git
 ```
 
 3. Execute the installation script
